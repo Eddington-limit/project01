@@ -55,7 +55,9 @@ const App = () => {
           />
         }
       />
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFound/>} />
+      <Route path="/profile" element={<NotFound/>} />
+      <Route path="/message" element={<NotFound/>} />
     </Routes>
   );
 };
