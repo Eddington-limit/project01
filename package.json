@@ -1,7 +1,7 @@
 {
-  "name": "weblab-skeleton",
+  "name": "street-corner",
   "version": "1.0.0",
-  "description": "",
+  "description": "a social media app",
   "main": "server/server.js",
   "scripts": {
     "hotloader": "webpack serve --config ./webpack.config.js --mode development --port 5050",
