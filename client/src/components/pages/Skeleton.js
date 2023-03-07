@@ -1,5 +1,7 @@
 import React from "react";
-import Navbar from "../modules/Navbar.js";
+import Timeline from './Timeline.js';
+import { useEffect } from "react";
+
 
 
 import "../../utilities.css";
@@ -9,9 +11,8 @@ import "./Skeleton.css";
 
 const Skeleton = ({ userId, handleLogin, handleLogout }) => {
   return (
-    <>
-      <Navbar/>
-      
+    <body>
+      <Timeline/>
       <h1>Good luck on your project :)</h1>
       <h2> What you need to change in this skeleton</h2>
       <ul>
@@ -30,7 +31,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
       <a href="https://docs.google.com/document/d/110JdHAn3Wnp3_AyQLkqH2W8h5oby7OVsYIeHYSiUzRs/edit?usp=sharing">
         Check out this getting started guide
       </a>
-    </>
+    </body>
   );
 };
 

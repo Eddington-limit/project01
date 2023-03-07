@@ -4,23 +4,35 @@
     background-color: grey;
     border-radius: 3vh;
     width: 10vw;
+    opacity: 2;
+    text-decoration: none;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
 }
 
-.button hover {
-    opacity: ;
-}
+.button:hover {
+    opacity: 0.5 /* or any other value you like */
+  }
 
+.button:visited {
+    text-decoration: none;
+}
+  
 .container {
     color:white;
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
     margin:0 6vw;
-    height: 6vh;
+    height: 4vh;
     padding:1vh 0
 }
 
 .user{
     position:fixed;
     right: 0;
+    color:black
 }

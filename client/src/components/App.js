@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
+import Navbar from "../modules/Navbar.js";
 
 import "../utilities.css";
 
@@ -43,6 +44,8 @@ const App = () => {
   };
 
   return (
+    <>
+    <Navbar/>
     <Routes>
       <Route
         path="/"
@@ -59,6 +62,8 @@ const App = () => {
       <Route path="/profile" element={<NotFound/>} />
       <Route path="/message" element={<NotFound/>} />
     </Routes>
+    <div>此网站仅供个人学习用，请勿发布敏感或隐私信息</div>
+    </>
   );
 };
 
