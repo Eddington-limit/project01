@@ -8,6 +8,7 @@ import Skeleton from "./pages/Skeleton.js";
 import Navbar from "./modules/Navbar.js";
 
 import "../utilities.css";
+import "./App.css"
 
 import { socket } from "../client-socket.js";
 
@@ -44,26 +45,30 @@ const App = () => {
   };
 
   return (
-    <>
-    <Navbar/>
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Skeleton
+    <span className="app-container">
+      <div className="blank-space"></div>
+      <div className="content">
+        <Navbar/>
+        <Routes>
+          <Route
             path="/"
-            handleLogin={handleLogin}
-            handleLogout={handleLogout}
-            userId={userId}
+            element={
+              <Skeleton
+                path="/"
+                handleLogin={handleLogin}
+                handleLogout={handleLogout}
+                userId={userId}
+              />
+            }
           />
-        }
-      />
-      <Route path="*" element={<NotFound/>} />
-      <Route path="/profile" element={<NotFound/>} />
-      <Route path="/message" element={<NotFound/>} />
-    </Routes>
-    <div className="u-bottom u-center">此网站仅供个人学习用，请勿发布敏感或隐私信息</div>
-    </>
+          <Route path="*" element={<NotFound/>} />
+          <Route path="/profile" element={<NotFound/>} />
+          <Route path="/message" element={<NotFound/>} />
+        </Routes>
+        <div className="u-bottom u-center">此网站仅供个人学习用，请勿发布敏感或隐私信息</div>
+      </div>
+      <div className="blank-space"></div>
+    </span>
   );
 };
 
