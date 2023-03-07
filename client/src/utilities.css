@@ -88,3 +88,14 @@ form {
 .u-link:hover {
   color: var(--primary--dim);
 }
+
+.u-bottom {
+  position:absolute;
+  bottom: 0;
+}
+
+.u-center {
+  position:absolute;
+  left:50vw;
+  transform: translate(-50%,0)
+}

@@ -1,0 +1,18 @@
+.Story:first-of-type {
+    margin-top: var(24px);
+  }
+
+  .Story {
+    position: relative;
+    width: 200px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 2px 2px 5px #aaa;
+  }
+
+  .StoryContent {
+    font-size: 40px;
+    margin:8px 0 0;
+  }
