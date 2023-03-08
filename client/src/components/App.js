@@ -6,6 +6,7 @@ import jwt_decode from "jwt-decode";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import Navbar from "./modules/Navbar.js";
+import DirectMessages from "./pages/DirectMessages.js"
 
 import "../utilities.css";
 import "./App.css"
@@ -63,7 +64,7 @@ const App = () => {
           />
           <Route path="*" element={<NotFound/>} />
           <Route path="/profile" element={<NotFound/>} />
-          <Route path="/message" element={<NotFound/>} />
+          <Route path="/message" element={<DirectMessages/>} />
         </Routes>
         <div className="u-bottom u-center">此网站仅供个人学习用，请勿发布敏感或隐私信息</div>
       </div>

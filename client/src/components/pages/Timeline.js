@@ -13,27 +13,26 @@ const Timeline =(props) => {
       setStories(reversedStoryObjs);
     });
   }, []);
-  const addNewStory = (storyObj) => {
-    setStories([storyObj].concat(stories));
-  };
+
 
   let storiesList = null;
   const hasStories = stories.length !== 0;
   if (hasStories) {
     storiesList = stories.map((storyObj) => (
       <SingleStory
-        
+        creator_id={storyObj.creator_id}
+        creator_name={storyObj.ceator_name}
+        content={storyObj.content}
+        _id={storyObj._id}
+        num_of_likes={storyObj.num_of_likes}
+        num_of_comments={storyObj.num_of_comments}
       />
     ));
   } else {
     storiesList = <div>没有内容</div>;
   }
-  return (
-    <>
-      {props.userId && <NewStory addNewStory={addNewStory} />}
-      {storiesList}
-    </>
-  );
+  return storiesList
+  ;
 };
 
 export default Timeline
