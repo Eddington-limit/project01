@@ -1,29 +1,28 @@
 .story:first-of-type {
-    margin-top: var(24px);
-  }
+  margin-top: var(24px);
+}
 
-  .story {
-    position: relative;
-    width: 200px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 10px;
-    margin: auto;
-    box-shadow: 2px 2px 5px #aaa;
-  }
+.story {
+  position: relative;
+  width: 200px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: auto;
+  box-shadow: 2px 2px 5px #aaa;
+}
 
-  .storyContent {
-    font-size: 40px;
-    margin:8px 0 0;
-  }
+.storyContent {
+  font-size: 40px;
+  margin: 8px 0 0;
+}
 
-  .comment-and-like {
-    display: flex;
-    flex-direction: row;
-  }
+.comment-and-like {
+  display: flex;
+  flex-direction: row;
+}
 
-  .item {
-    flex-grow: 1;
-    text-align: center;
-  }
-
+.item {
+  flex-grow: 1;
+  text-align: center;
+}
