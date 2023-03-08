@@ -42,6 +42,15 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+router.get("/stories",(req,res) => {
+  res.send([{creator_id:0,//dummy data
+    creator_name:'test user',
+    _id:0,
+    content:'this is a test post',
+    num_of_likes:2,
+    num_of_comments:99}])
+}
+)
 
 router.get("/stories", (req, res) => {
   res.send({_id:0, creator_name:'测试用户', creator_id:0, content:'这是一条测试帖子'})
