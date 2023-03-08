@@ -11,10 +11,10 @@ const SingleStory = (props) => {
           {props.creator_name}
         </Link>
         <p className="storyContent">{props.content}</p>
-        <span>
-          {props.num_of_comments}
-          {props.num_of_likes}
-          </span>
+        <span className="comment-and-like">
+          <div className="item">{props.num_of_comments}</div>
+          <div className="item">{props.num_of_likes}</div>
+        </span>
       </div>
     );
   };

@@ -10,16 +10,16 @@ import "./Skeleton.css";
 
 
 
-const Skeleton = ({ userId, handleLogin, handleLogout }) => {
+const Skeleton = () => {
   return (
-    <body>
+    <div>
       <SingleStory 
         creator_name='test user'
         creator_id={0}
         num_of_likes={99}
         num_of_comments={2}
         content='this is test story' />
-    </body>
+    </div>
   );
 };
 

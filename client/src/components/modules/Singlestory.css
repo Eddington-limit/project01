@@ -1,18 +1,29 @@
-.Story:first-of-type {
+.story:first-of-type {
     margin-top: var(24px);
   }
 
-  .Story {
+  .story {
     position: relative;
     width: 200px;
     padding: 10px;
     background-color: #fff;
     border-radius: 10px;
-    margin: 10px;
+    margin: auto;
     box-shadow: 2px 2px 5px #aaa;
   }
 
-  .StoryContent {
+  .storyContent {
     font-size: 40px;
     margin:8px 0 0;
   }
+
+  .comment-and-like {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .item {
+    flex-grow: 1;
+    text-align: center;
+  }
+
