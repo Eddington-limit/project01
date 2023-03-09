@@ -13,7 +13,7 @@ const SingleStory = (props) => {
         <p className="storyContent">{props.content}</p>
         <span className="comment-and-like">
           <div className="item">{props.num_of_comments}</div>
-          <div className="item">{props.num_of_likes}</div>
+          <div className="item">{props.liked_by.includes(props.userId)?`liked ${props.num_of_likes}`:props.num_of_likes}</div>
         </span>
       </div>
     );

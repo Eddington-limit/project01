@@ -1,5 +1,5 @@
 import React from "react";
-import Timeline from './Timeline.js';
+import Timeline from '../modules/Timeline.js';
 import { useEffect } from "react";
 
 
@@ -9,11 +9,9 @@ import "./Skeleton.css";
 
 
 
-const Skeleton = () => {
+const Skeleton = (props) => {
   return (
-    <div>
-      <Timeline is='首页' />
-    </div>
+      <Timeline is='首页' userId={props.userId}/>
   );
 };
 

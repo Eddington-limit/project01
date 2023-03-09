@@ -6,7 +6,8 @@ import jwt_decode from "jwt-decode";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import Navbar from "./modules/Navbar.js";
-import DirectMessages from "./pages/DirectMessages.js"
+import DirectMessages from "./pages/DirectMessages.js";
+import Profile from "./pages/Profile.js";
 
 import "../utilities.css";
 import "./App.css"
@@ -22,12 +23,8 @@ const App = () => {
   const [userId, setUserId] = useState(undefined);
 
   useEffect(() => {
-    get("/api/whoami").then((user) => {
-      if (user._id) {
-        // they are registed in the database, and currently logged in.
-        setUserId(user._id);
-      }
-    });
+    setUserId(0)
+    console.log(userId)
   }, []);
 
   const handleLogin = (credentialResponse) => {
@@ -44,6 +41,7 @@ const App = () => {
     setUserId(undefined);
     post("/api/logout");
   };
+
 
   return (
     <span className="app-container">
@@ -63,7 +61,7 @@ const App = () => {
             }
           />
           <Route path="*" element={<NotFound/>} />
-          <Route path="/profile" element={<NotFound/>} />
+          <Route path="/profile/:userId" element={<Profile/>} />
           <Route path="/message" element={<DirectMessages/>} />
         </Routes>
         <div className="u-bottom u-center">此网站仅供个人学习用，请勿发布敏感或隐私信息</div>

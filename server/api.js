@@ -48,12 +48,20 @@ router.get("/stories",(req,res) => {
     _id:0,
     content:'this is a test post',
     num_of_likes:2,
-    num_of_comments:99}])
+    num_of_comments:99,
+    liked_by:[0]},//userid of users that like this post
+    {_id:1, 
+    creator_name:'测试用户', 
+    creator_id:1, 
+    content:'这是一条测试帖子',
+    num_of_likes:99,
+    num_of_comments:2,
+    liked_by:[1]}])
 }
 )
 
-router.get("/stories", (req, res) => {
-  res.send({_id:0, creator_name:'测试用户', creator_id:0, content:'这是一条测试帖子'})
+router.get("/profile",(req,res) => {
+  res.send({user_name:req.query.userId})//need database
 })
 
 // anything else falls to this "not found" case

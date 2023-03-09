@@ -1,7 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { get } from "../../utilities";
-import SingleStory from "../modules/Singlestory";
+import SingleStory from "./Singlestory";
+
+import "./Timeline.css"
 
 const Timeline =(props) => {
     const [stories, setStories] = useState([]);
@@ -20,18 +22,23 @@ const Timeline =(props) => {
   if (hasStories) {
     storiesList = stories.map((storyObj) => (
       <SingleStory
+        userId={props.userId}
         creator_id={storyObj.creator_id}
-        creator_name={storyObj.ceator_name}
+        creator_name={storyObj.creator_name}
         content={storyObj.content}
         _id={storyObj._id}
         num_of_likes={storyObj.num_of_likes}
         num_of_comments={storyObj.num_of_comments}
+        key={storyObj._id}
+        liked_by={storyObj.liked_by}
       />
     ));
   } else {
     storiesList = <div>没有内容</div>;
   }
-  return storiesList
+  return (<div className="timeline">
+    {storiesList}
+    </div>)
   ;
 };
 
