@@ -63,7 +63,7 @@ const NewComment = (props) => {
     });
   };
 
-  return <NewPostInput defaultText="New Comment" onSubmit={addComment} />;
+  return <NewPostInput defaultText="发表你的评论" onSubmit={addComment} />;
 };
 
 /**
@@ -81,7 +81,7 @@ const NewStory = (props) => {
     });
   };
 
-  return <NewPostInput defaultText="New Story" onSubmit={addStory} />;
+  return <NewPostInput defaultText="发布一条动态" onSubmit={addStory} />;
 };
 
 /**
@@ -96,7 +96,7 @@ const NewMessage = (props) => {
     post("/api/message", body);
   };
 
-  return <NewPostInput defaultText="New Message" onSubmit={sendMessage} />;
+  return <NewPostInput defaultText="发送消息" onSubmit={sendMessage} />;
 }
 
 export { NewComment, NewStory, NewMessage };

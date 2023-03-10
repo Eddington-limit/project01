@@ -11,6 +11,9 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Story = require("./models/story");
+const Comment = require("./models/comment");
+const Message = require("./models/message");
 
 // import authentication library
 const auth = require("./auth");
@@ -42,6 +45,17 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+router.post("/story",(req,res) => {
+    const newStory = new Story({
+      creator_id: req.user._id,
+      creator_name: req.user.name,
+      content: req.body.content,
+    });
+    newStory.save().then((story) => res.send(story));
+})
+
+
+
 router.get("/stories",(req,res) => {
   res.send([{creator_id:0,//dummy data
     creator_name:'test user',

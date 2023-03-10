@@ -5,9 +5,9 @@ const StorySchema = new mongoose.Schema({
   creator_id: String,
   creator_name: String,
   content: String,
-  liked_by: [String],
-  num_of_likes:Number,
-  num_of_comments:Number
+  liked_by: {type: [String], default: []},
+  num_of_likes:{ type: Number, default: 0},
+  num_of_comments:{ type: Number, default: 0}
 });
 
 // compile model from schema
