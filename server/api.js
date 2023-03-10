@@ -61,7 +61,7 @@ router.get("/stories",(req,res) => {
 )
 
 router.get("/profile",(req,res) => {
-  res.send({user_name:req.query.userId})//need database
+  res.send({user_name:'test user', description:'I am a robot'})//need database
 });
 
 // anything else falls to this "not found" case

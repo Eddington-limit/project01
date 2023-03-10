@@ -6,7 +6,7 @@ import Default from '../../public/Default.png'
 
 import "../../utilities.css"
 import "./Profile.css"
-//
+//{user_name:String,description:String,profile_pic:image(?)}
 
 const Profile = (props) => {//how to get prop in the path of router?
     const [userId,setUserId] = useState(useParams().userId)
@@ -32,7 +32,7 @@ const Profile = (props) => {//how to get prop in the path of router?
             <div className="Profile-subContainer u-textCenter">
               <h4 className="Profile-subTitle">{profile.user_name}</h4>
               <div id="profile-description">
-                简介简介简介。。。。。。。
+                {profile.description}
               </div>
             </div>
           </div>

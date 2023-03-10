@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
   name: String,
-  googleid: String,
+  _id: String,
+  description:String,
+  profile_pic:String//how to store image?
 });
 
 // compile model from schema
