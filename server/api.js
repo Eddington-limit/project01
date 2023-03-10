@@ -62,7 +62,7 @@ router.get("/stories",(req,res) => {
 
 router.get("/profile",(req,res) => {
   res.send({user_name:req.query.userId})//need database
-})
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

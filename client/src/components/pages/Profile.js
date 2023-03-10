@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { get } from "../../utilities";
 import { useParams } from "react-router-dom";
+
+import Default from '../../public/Default.png'
+
+import "../../utilities.css"
+import "./Profile.css"
 //
 
 const Profile = (props) => {//how to get prop in the path of router?
@@ -9,7 +14,7 @@ const Profile = (props) => {//how to get prop in the path of router?
     useEffect(() => {
         document.title='个人页面';
         get("/api/profile",{userId:userId}).then((profileObj)=>{setProfile(profileObj)})
-    },[]).then(()=>{console.log(profile.creator_name)})
+    },[])
     //test if router and api are working,something is wrong
     return (
         <>
@@ -19,13 +24,13 @@ const Profile = (props) => {//how to get prop in the path of router?
             ;
             }}
           >
-            <div className="Profile-avatar" />
+            <div className="Profile-avatar" style={{backgroundImage: `url(${Default})`}}></div>
           </div>
           <h1 className="Profile-name u-textCenter"></h1>
           <hr className="Profile-linejj" />
           <div className="u-flex">
             <div className="Profile-subContainer u-textCenter">
-              <h4 className="Profile-subTitle">简介</h4>
+              <h4 className="Profile-subTitle">{profile.user_name}</h4>
               <div id="profile-description">
                 简介简介简介。。。。。。。
               </div>
