@@ -68,12 +68,10 @@ const DirectMessages = (props) => {
       // 如果用户已登录，就加载聊天列表聊天历史
       // 聊天历史默认为与最近一个聊天对象的聊天历史（还要设置选择聊天对象对chatlist的改变）
       setActiveUsers(data.activeUsers);})
-      .then(()=>{loadMessageHistory(activeUsers[0])})
-    }
+      .then(()=>{if (activeUsers.length>=1) {loadMessageHistory(activeUsers[0])}})}
+    })
     
-    
-    .then(activeUsers[0]);
-  }, []);
+
 
   useEffect(() => {
     socket.on("message", addMessages);
@@ -82,15 +80,7 @@ const DirectMessages = (props) => {
     };
   }, []);
 
-  useEffect(() => {
-    const callback = (data) => {
-      setActiveUsers([ALL_CHAT].concat(data.activeUsers));
-    };
-    socket.on("activeUsers", callback);
-    return () => {
-      socket.off("activeUsers", callback);
-    };
-  }, []);
+
 
   const setActiveUser = (user) => {
     // TODO (step 7.1): Set the state "activeChat" to the new recipient (user)
@@ -98,10 +88,11 @@ const DirectMessages = (props) => {
     // Then, make sure that the message history for this user is loaded (might
     // involve writing code outside of this function)
     console.log(`setting active user to ${user.name}`);
+    loadMessageHistory(user)
   };
 
   if (!props.userId) {
-    return <div>Log in before using Chatbook</div>;
+    return <div>请登录</div>;
   }
   return (
     <>
@@ -115,7 +106,7 @@ const DirectMessages = (props) => {
           />
         </div>
         <div className="Chatbook-chatContainer u-relative">
-          <Chat data={activeChat} />
+          <Chat data={activeChat}/>
         </div>
       </div>
     </>
