@@ -54,7 +54,9 @@ router.post("/story",(req,res) => {
     newStory.save().then((story) => res.send(story));
 })
 
-
+router.get("/chat", (req, res) => {
+  Message.find(req.query).then((messages) => res.send(messages));
+});
 
 router.get("/stories",(req,res) => {
   res.send([{creator_id:0,//dummy data
@@ -65,7 +67,7 @@ router.get("/stories",(req,res) => {
     num_of_comments:99,
     liked_by:[0]},//userid of users that like this post
     {_id:1, 
-    creator_name:'测试用户', 
+    creator_name:'测试用户',
     creator_id:1, 
     content:'这是一条测试帖子',
     num_of_likes:99,
@@ -76,6 +78,11 @@ router.get("/stories",(req,res) => {
 
 router.get("/profile",(req,res) => {
   res.send({user_name:'test user', description:'I am a robot'})//need database
+});
+
+router.get("/activeUsers", (req, res) => {
+  User.find(req.query).then((users)=> {
+  res.send(users)});
 });
 
 // anything else falls to this "not found" case

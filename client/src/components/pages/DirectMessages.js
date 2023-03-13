@@ -6,10 +6,6 @@ import { get } from "../../utilities";
 
 import "./Chatbook.css";
 
-const ALL_CHAT = {
-  _id: "NO_CHAT",
-  name: "NO CHAT",
-};
 
 /**
  * Page component to display when at the "/chat" route
@@ -41,8 +37,8 @@ const DirectMessages = (props) => {
     messages: [],
   });
 
-  const loadMessageHistory = (recipient) => {
-    get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
+  const loadMessageHistory = (chatting_with) => {
+    get("/api/chat", { recipient_id: chatting_with._id }).then((messages) => {
       setActiveChat({
         recipient: recipient,
         messages: messages,
@@ -64,7 +60,7 @@ const DirectMessages = (props) => {
 
 
   useEffect(() => {if (props.userId) {
-    get("/api/activeUsers").then((data) => {
+    get("/api/activeUsers",{userId:props.userId}).then((data) => {
       // 如果用户已登录，就加载聊天列表聊天历史
       // 聊天历史默认为与最近一个聊天对象的聊天历史（还要设置选择聊天对象对chatlist的改变）
       setActiveUsers(data.activeUsers);})
@@ -83,10 +79,6 @@ const DirectMessages = (props) => {
 
 
   const setActiveUser = (user) => {
-    // TODO (step 7.1): Set the state "activeChat" to the new recipient (user)
-    // and empty array for messages.
-    // Then, make sure that the message history for this user is loaded (might
-    // involve writing code outside of this function)
     console.log(`setting active user to ${user.name}`);
     loadMessageHistory(user)
   };
