@@ -81,8 +81,7 @@ router.get("/profile",(req,res) => {
 });
 
 router.get("/activeUsers", (req, res) => {
-  User.find(req.query).then((users)=> {
-  res.send(users)});
+  User.find(req.query.userId).then((user)=>{res.send({chatted_with: user.chatted_with})})
 });
 
 // anything else falls to this "not found" case

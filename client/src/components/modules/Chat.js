@@ -33,11 +33,11 @@ const Chat = (props) => {
       <h3>Chatting with {props.data.recipient.name}</h3>
       <div className="Chat-historyContainer">
         {props.data.messages.map((m, i) => (
-          <SingleMessage message={m} key={i} />
+          <SingleMessage message={m} key={i}/>
         ))}
       </div>
       <div className="Chat-newContainer">
-        <NewMessage recipient={props.data.recipient} />
+        <NewMessage recipient={props.data.recipient}/>
       </div>
     </div>
   );
