@@ -4,7 +4,7 @@ import Chat from "../modules/Chat.js";
 import { socket } from "../../client-socket.js";
 import { get } from "../../utilities";
 
-import "./Chatbook.css";
+import "./DirectMessages.css";
 
 
 /**
