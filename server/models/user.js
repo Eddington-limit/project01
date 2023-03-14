@@ -4,8 +4,8 @@ const path = require("path");
 const UserSchema = new mongoose.Schema({
   name: String,
   _id: String,
-  description:String,
-  chatted_with:[String],
+  description:{type:[String],default:'未编写简介'},
+  chatted_with:{type:[String],default:[]},
   hashed_password: String
 });
 

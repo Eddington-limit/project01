@@ -25,12 +25,14 @@ const router = express.Router();
 const socketManager = require("./server-socket");
 
 
-
+router.post("/login", auth.login);
+router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
   if (!req.user) {
     // not logged in
     return res.send({});
   }
+
 
   res.send(req.user);
 });
