@@ -40,7 +40,7 @@ const DirectMessages = (props) => {
   const loadMessageHistory = (chatting_with) => {
     get("/api/chat", { recipient_id: chatting_with._id }).then((messages) => {
       setActiveChat({
-        recipient: recipient,
+        recipient: chatting_with,
         messages: messages,
       });
     });

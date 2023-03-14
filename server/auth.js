@@ -1,40 +1,34 @@
 const { OAuth2Client } = require("google-auth-library");
 const User = require("./models/user");
 const socketManager = require("./server-socket");
+const bcrypt = require('bcrypt');
 
-// create a new OAuth client used to verify google sign-in
-//    TODO: replace with your own CLIENT_ID
-const CLIENT_ID = "FILL IN CLIENT ID";
-const client = new OAuth2Client(CLIENT_ID);
 
-// accepts a login token from the frontend, and verifies that it's legit
-function verify(token) {
-  return client
-    .verifyIdToken({
-      idToken: token,
-      audience: CLIENT_ID,
-    })
-    .then((ticket) => ticket.getPayload());
+
+
+function verify(login_info) {
+  User.findOne({name: login_info.username}).then((existingUser) => {
+    if (existingUser&&
+      bcrypt.compareSync(login_info.password,existingUser.hashed_password)) 
+    {return existingUser}})
 }
 
-// gets user from DB, or makes a new account if it doesn't exist yet
-function getOrCreateUser(user) {
-  // the "sub" field means "subject", which is a unique identifier for each user
-  return User.findOne({ googleid: user.sub }).then((existingUser) => {
-    if (existingUser) return existingUser;
 
+function CreateUser(login_info) {
+  const saltRounds = 10;
+  const salt = bcrypt.genSaltSync(saltRounds);
+  // Hash the password with the salt
+  const hashedPassword = bcrypt.hashSync(login_info.password, salt);
     const newUser = new User({
-      name: user.name,
-      googleid: user.sub,
+      name: login_info.username,
+      _id: user._id,//_id?
     });
 
     return newUser.save();
-  });
-}
+  }
 
 function login(req, res) {
-  verify(req.body.token)
-    .then((user) => getOrCreateUser(user))
+  verify(req.body)//body is an object containing username and password
     .then((user) => {
       // persist user in the session
       req.session.user = user;

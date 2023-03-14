@@ -55,8 +55,34 @@ router.post("/story",(req,res) => {
 })
 
 router.get("/chat", (req, res) => {
-  Message.find(req.query).then((messages) => res.send(messages));
+  query = {
+    $or: [
+      { "sender._id": req.user._id, "recipient._id": req.query.recipient_id },
+      { "sender._id": req.query.recipient_id, "recipient._id": req.user._id },
+    ],
+  };
+  Message.find(query).then((messages) => res.send(messages));
 });
+
+router.post("/message", auth.ensureLoggedIn, (req, res) => {
+  console.log(`Received a chat message from ${req.user.name}: ${req.body.content}`);
+
+  // insert this message into the database
+  const message = new Message({
+    recipient: req.body.recipient,
+    sender: {
+      _id: req.user._id,
+      name: req.user.name,
+    },
+    content: req.body.content,
+  });
+  message.save();
+  socketManager.getSocketFromUserID(req.user._id).emit("message", message);
+    if (req.user._id !== req.body.recipient._id) {
+      socketManager.getSocketFromUserID(req.body.recipient._id).emit("message", message);
+    }
+  }
+);
 
 router.get("/stories",(req,res) => {
   res.send([{creator_id:0,//dummy data
@@ -77,11 +103,12 @@ router.get("/stories",(req,res) => {
 )
 
 router.get("/profile",(req,res) => {
+  User.find()
   res.send({user_name:'test user', description:'I am a robot'})//need database
 });
 
 router.get("/activeUsers", (req, res) => {
-  User.find(req.query.userId).then((user)=>{res.send({chatted_with: user.chatted_with})})
+  User.find({userId: req.query.userId}).then((user)=>{res.send({chatted_with: user.chatted_with})})
 });
 
 // anything else falls to this "not found" case

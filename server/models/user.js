@@ -5,9 +5,9 @@ const UserSchema = new mongoose.Schema({
   name: String,
   _id: String,
   description:String,
-  profile_pic:String,//how to store image?
-  chatted_with:[String]
+  chatted_with:[String],
+  hashed_password: String
 });
 
 // compile model from schema
-module.exports = mongoose.model("user", UserSchema);
+module.exports = mongoose.model("user", UserSchema); 
