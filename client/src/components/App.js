@@ -8,6 +8,7 @@ import Skeleton from "./pages/Skeleton.js";
 import Navbar from "./modules/Navbar.js";
 import DirectMessages from "./pages/DirectMessages.js";
 import Profile from "./pages/Profile.js";
+import LoginForm from "./modules/LoginForm.js";
 
 import "../utilities.css";
 import "./App.css"
@@ -22,20 +23,29 @@ import { get, post } from "../utilities";
 const App = () => {
   const [userId, setUserId] = useState(undefined);
 
-  useEffect(() => {
-    setUserId(0)
-    console.log(userId)
-  }, []);
+  //用于登录的信息
+  const [username, setUsername] = useState('username');
+  const [password, setPassword] = useState('password');
 
-  const handleLogin = (credentialResponse) => {
-    const userToken = credentialResponse.credential;
-    const decodedCredential = jwt_decode(userToken);
-    console.log(`Logged in as ${decodedCredential.name}`);
-    post("/api/login", { token: userToken }).then((user) => {
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value)
+}
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value)
+  }
+
+  const handleLogin = () => {
+    post("api/login",{username:username,password:password}).then((user) => {
       setUserId(user._id);
       post("/api/initsocket", { socketid: socket.id });
     });
-  };
+  }
+
+  const handleRegister = () => {
+    post("api/register",{username:username,password:password}).then(alert('成功注册！'))
+  }
+
 
   const handleLogout = () => {
     setUserId(undefined);
@@ -47,15 +57,20 @@ const App = () => {
     <span className="app-container">
       <div className="blank-space"></div>
       <div className="content">
-        <Navbar/>
+        <div className="navbar-container">
+          <Navbar/>
+          <LoginForm
+            handleUsernameChange={handleUsernameChange}
+            handlePasswordChange={handlePasswordChange}
+            handleLogin={handleLogin}
+            handleRegister={handleRegister}/>
+        </div>
         <Routes>
           <Route
             path="/"
             element={
               <Skeleton
                 path="/"
-                handleLogin={handleLogin}
-                handleLogout={handleLogout}
                 userId={userId}
               />
             }

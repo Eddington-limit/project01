@@ -3,38 +3,36 @@ import { post } from "../../utilities";
 
 import "./LoginForm.css"
 
-function LoginForm() {
+function LoginForm(props) {
     const [isVisible, setIsVisible] = useState(false);
-    const {username, setUsername} = useState('username');
-    const {password, setPassword} = useState('password');
+    const [is, setIs] = useState('')
 
-    const toggleVisibility = () => {
-        setIsVisible(!isVisible);
+
+    const toggleLoginForm = () => {
+      setIsVisible(!isVisible);
+      setIs('登录');
     }
 
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value)
-    }
-
-    const handlePasswordChange = (event) => {
-      setPassword(event.target.value)
-    }
-
-    const loginRequest = () => {
-        post("api/login",{username:username,password:password})
+    const toggleRegisterForm = () => {
+      setIsVisible(!isVisible);
+      setIs('注册');
+  }
+    const closeDropDown = () =>{
+      setIsVisible(!isVisible);
     }
 
   return (
-    <div>{!isVisible?
-      <button onClick={toggleVisibility}>Login</button>:
-        <button onClick={toggleVisibility}>x</button>}
-      {isVisible && (
-        <div>
-          <input type="text" placeholder="Username" onChange={handleUsernameChange} />
-          <input classname="dropdown" type="password" placeholder="Password" onChange={handlePasswordChange} />
-          <button onClick={loginRequest}>Login</button>
-        </div>
-      )}
+    <div className='login-form'>{!isVisible?
+      <div>
+        <button onClick={toggleLoginForm}>登录</button>
+        <button onClick={toggleRegisterForm}>注册</button>
+      </div>:
+      <div>
+        <button onClick={closeDropDown}>x</button>
+        <input type="text" placeholder={is} onChange={props.handleUsernameChange} />
+        <input classname="dropdown" type={is} placeholder="密码" onChange={props.handlePasswordChange} />
+        <button onClick={is=='登录'?props.handleLogin:props.handleRegister}>{is}</button>
+      </div>}
     </div>
   );
 }

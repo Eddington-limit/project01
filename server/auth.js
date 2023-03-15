@@ -14,17 +14,16 @@ function verify(login_info) {
 }
 
 
-function CreateUser(login_info) {
+function register(req,res) {
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
   // Hash the password with the salt
-  const hashed_password = bcrypt.hashSync(login_info.password, salt);
+  const hashed_password = bcrypt.hashSync(req.body.password, salt);
     const newUser = new User({
-      name: login_info.username,
+      name: req.body.username,
       _id: User.countDocuments({})+1,
       hashed_password:hashed_password
     });
-
     return newUser.save();
   }
 
@@ -66,5 +65,5 @@ module.exports = {
   logout,
   populateCurrentUser,
   ensureLoggedIn,
-  CreateUser
+  register
 };

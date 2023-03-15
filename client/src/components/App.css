@@ -17,3 +17,20 @@
 .content {
     width: 80vw;
 }
+
+.navbar-container {
+    color:white;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin:0 6vw;
+    height: 4vh;
+    padding:1vh 0
+}
+
+.login-form{
+    color:black;
+    margin-left: auto;
+    height:4vh;
+    
+}

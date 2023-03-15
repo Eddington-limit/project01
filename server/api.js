@@ -26,6 +26,7 @@ const socketManager = require("./server-socket");
 
 
 router.post("/login", auth.login);
+router.post("/register",auth.register);
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
   if (!req.user) {
