@@ -9,6 +9,7 @@ import Navbar from "./modules/Navbar.js";
 import DirectMessages from "./pages/DirectMessages.js";
 import Profile from "./pages/Profile.js";
 import LoginForm from "./modules/LoginForm.js";
+import ProfileAvatar from "./modules/ProfileAvatar.js";
 
 import "../utilities.css";
 import "./App.css"
@@ -43,7 +44,10 @@ const App = () => {
   }
 
   const handleRegister = () => {
-    post("api/register",{username:username,password:password}).then(alert('成功注册！'))
+    post("api/register",{username:username,password:password})
+    .then(()=>{alert('success!')})
+    .catch(() => {
+      alert('注册失败')})
   }
 
 
@@ -59,11 +63,13 @@ const App = () => {
       <div className="content">
         <div className="navbar-container">
           <Navbar/>
+          {userId?
+          <ProfileAvatar userId={userId}/>:
           <LoginForm
             handleUsernameChange={handleUsernameChange}
             handlePasswordChange={handlePasswordChange}
             handleLogin={handleLogin}
-            handleRegister={handleRegister}/>
+            handleRegister={handleRegister}/>}
         </div>
         <Routes>
           <Route
@@ -76,7 +82,7 @@ const App = () => {
             }
           />
           <Route path="*" element={<NotFound/>} />
-          <Route path="/profile/:userId" element={<Profile/>} />
+          <Route path="/profile/:userId" element={<Profile handleLogout={handleLogout}/>} />
           <Route path="/message" element={<DirectMessages/>} />
         </Routes>
         <div className="u-bottom u-center">此网站仅供个人学习用，请勿发布敏感或隐私信息</div>

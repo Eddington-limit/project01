@@ -1,4 +1,3 @@
-const { OAuth2Client } = require("google-auth-library");
 const User = require("./models/user");
 const socketManager = require("./server-socket");
 const bcrypt = require('bcrypt');
@@ -7,30 +6,41 @@ const bcrypt = require('bcrypt');
 
 //寻找数据库中匹配登录信息用户名的用户，并比对密码是否正确
 function verify(login_info) {
-  User.findOne({name: login_info.username}).then((existingUser) => {
+  return User.findOne({name: login_info.username}).then((existingUser) => {
     if (existingUser&&
       bcrypt.compareSync(login_info.password,existingUser.hashed_password)) 
     {return existingUser}})
 }
 
 
-function register(req,res) {
+async function register(req,res) {
+  req.session.user = null
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
-  // Hash the password with the salt
   const hashed_password = bcrypt.hashSync(req.body.password, salt);
-    const newUser = new User({
-      name: req.body.username,
-      _id: User.countDocuments({})+1,
-      hashed_password:hashed_password
-    });
-    return newUser.save();
+
+  const existingUser = await User.findOne({ name: req.body.username });
+  if (existingUser) {
+    return res.status(400).send({ message: "Username already exists" });
+  }
+
+  const count = await User.countDocuments({});
+  const newUser = new User({
+    name: req.body.username,
+    _id: count+1,
+    hashed_password: hashed_password});
+  newUser.save()
+    .then((savedUser) => {res.send(savedUser)})
+    .catch(err => {
+      console.error(err);
+      res.status(500).send({ message: "Failed to register new user" });
+  });
   }
 
 function login(req, res) {
   verify(req.body)//body is an object containing username and password
     .then((user) => {
-      if (!user) {alert('用户名或密码不正确！')}
+      if (!user) {console.log('用户名或密码不正确！')}
       // persist user in the session
       req.session.user = user;
       res.send(user);

@@ -15,7 +15,8 @@ const Profile = (props) => {//how to get prop in the path of router?
         document.title='个人页面';
         get("/api/profile",{userId:userId}).then((profileObj)=>{setProfile(profileObj)})
     },[])
-    //test if router and api are working,something is wrong
+    //link button to main page?
+    //check session?
     return (
         <>
           <div
@@ -34,6 +35,7 @@ const Profile = (props) => {//how to get prop in the path of router?
               <div id="profile-description">
                 {profile.description}
               </div>
+              <button onClick={props.handleLogout}>登出</button>
             </div>
           </div>
         </>

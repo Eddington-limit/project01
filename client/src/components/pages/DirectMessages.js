@@ -58,7 +58,6 @@ const DirectMessages = (props) => {
   }, []);
 
 
-
   useEffect(() => {if (props.userId) {
     get("/api/activeUsers",{userId:props.userId}).then((data) => {
       // 如果用户已登录，就加载聊天列表聊天历史

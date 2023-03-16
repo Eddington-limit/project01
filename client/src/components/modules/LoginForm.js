@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { post } from "../../utilities";
 
 import "./LoginForm.css"
 
@@ -29,8 +28,8 @@ function LoginForm(props) {
       </div>:
       <div>
         <button onClick={closeDropDown}>x</button>
-        <input type="text" placeholder={is} onChange={props.handleUsernameChange} />
-        <input classname="dropdown" type={is} placeholder="密码" onChange={props.handlePasswordChange} />
+        <input type="text" placeholder="用户名" onChange={props.handleUsernameChange} />
+        <input type="password" placeholder="密码" onChange={props.handlePasswordChange} />
         <button onClick={is=='登录'?props.handleLogin:props.handleRegister}>{is}</button>
       </div>}
     </div>

@@ -1,0 +1,16 @@
+.container{
+        /* make it a circle */
+        /* it is optional, for making this div centered in parent*/
+        margin: 0 auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+}
+
+.avatar{
+        background-size: cover;
+        border-radius: 50%;
+        border: 1px solid black;
+        width: 4vh
+}

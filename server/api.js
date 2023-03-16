@@ -100,8 +100,7 @@ router.get("/stories",(req,res) => {
     num_of_likes:99,
     num_of_comments:2,
     liked_by:[1]}])
-}
-)
+})
 
 router.get("/profile",(req,res) => {
   User.find()
