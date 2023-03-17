@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./NewPostInput.css";
+import "./Newpostinput.css";
 import { post } from "../../utilities";
 
 /**
@@ -27,7 +27,7 @@ const NewPostInput = (props) => {
   };
 
   return (
-    <div className="u-flex">
+    <div className="u-flex Container">
       <input
         type="text"
         placeholder={props.defaultText}
@@ -41,7 +41,7 @@ const NewPostInput = (props) => {
         value="Submit"
         onClick={handleSubmit}
       >
-        Submit
+        发送
       </button>
     </div>
   );
