@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { get } from "../../utilities";
 import { useParams } from "react-router-dom";
+import {Link} from 'react-router-dom'
 
 import Default from '../../public/Default.png'
 
@@ -35,7 +36,7 @@ const Profile = (props) => {//how to get prop in the path of router?
               <div id="profile-description">
                 {profile.description}
               </div>
-              <button onClick={props.handleLogout}>登出</button>
+              <Link to="/" onClick={props.handleLogout}>登出</Link>
             </div>
           </div>
         </>
