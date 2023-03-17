@@ -2,8 +2,10 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { get } from "../../utilities";
 import SingleStory from "./Singlestory";
+import { NewStory } from "./NewPostInput";
 
 import "./Timeline.css"
+import '../../utilities.css'
 
 const Timeline =(props) => {
     const [stories, setStories] = useState([]);
@@ -38,6 +40,7 @@ const Timeline =(props) => {
   }
   return (<div className="timeline">
     {storiesList}
+    <NewStory/>
     </div>)
   ;
 };
