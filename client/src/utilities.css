@@ -90,12 +90,9 @@ form {
 }
 
 .u-bottom {
-  position:absolute;
-  bottom: 0;
+  align-self: flex-end;
 }
 
 .u-center {
-  position:absolute;
-  left:50vw;
-  transform: translate(-50%,0)
+  margin: auto;
 }
