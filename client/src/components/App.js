@@ -58,7 +58,7 @@ const App = () => {
 
 
   return (
-    <span className="app-container">
+    <span className="app-container" style={{overflowY: 'hidden'}}>
       <div className="blank-space"></div>
       <div className="content">
         <div className="navbar-container">

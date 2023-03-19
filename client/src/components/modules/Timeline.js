@@ -44,7 +44,7 @@ const Timeline =(props) => {
     storiesList = <div>没有内容</div>;
   }
   return (<div className="timeline">
-    {storiesList}
+    <div style={{overflowY: 'scroll', height:'80vh'}}>{storiesList}</div>
     <NewStory addNewStory={addNewStory}/>
     </div>)
   ;
