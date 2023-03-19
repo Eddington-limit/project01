@@ -86,21 +86,17 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
 );
 
 router.get("/stories",(req,res) => {
-  res.send([{creator_id:0,//dummy data
-    creator_name:'test user',
-    _id:0,
-    content:'this is a test post',
-    num_of_likes:2,
-    num_of_comments:99,
-    liked_by:[0]},//userid of users that like this post
-    {_id:1, 
-    creator_name:'测试用户',
-    creator_id:1, 
-    content:'这是一条测试帖子',
-    num_of_likes:99,
-    num_of_comments:2,
-    liked_by:[1]}])
+  Story.find().then((stories)=>res.send(stories))
 })
+
+router.post("/story", auth.ensureLoggedIn, (req, res) => {
+  const newStory = new Story({
+    creator_id: req.user._id,
+    creator_name: req.user.name,
+    content: req.body.content,
+  });
+  newStory.save().then((story) => res.send(story));
+});
 
 router.get("/profile",(req,res) => {
   User.find()

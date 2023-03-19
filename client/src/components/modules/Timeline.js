@@ -19,6 +19,11 @@ const Timeline =(props) => {
   }, []);
 
 
+  const addNewStory = (storyObj) => {
+    setStories([storyObj].concat(stories));
+  };
+
+
   let storiesList = null;
   const hasStories = stories.length !== 0;
   if (hasStories) {
@@ -40,7 +45,7 @@ const Timeline =(props) => {
   }
   return (<div className="timeline">
     {storiesList}
-    <NewStory/>
+    <NewStory addNewStory={addNewStory}/>
     </div>)
   ;
 };
