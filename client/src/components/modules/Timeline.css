@@ -7,3 +7,47 @@
     margin-bottom: 30px;
 }
 
+.timeline-content {
+    overflow-y: auto;
+    height:80vh;
+}
+
+.timeline-content::-webkit-scrollbar {
+    width: 10px; /* set the width of the scrollbar */
+  }
+  
+  .timeline-content::-webkit-scrollbar-track {
+    background: #f1f1f1; /* set the background color of the track */
+  }
+  
+  .timeline-content::-webkit-scrollbar-thumb {
+    background: #888; /* set the color of the scrollbar thumb */
+  }
+  
+  .timeline-content::-webkit-scrollbar-thumb:hover {
+    background: #555; /* set the color of the scrollbar thumb when hovered */
+  }
+  
+  .timeline-content::-webkit-scrollbar-thumb:vertical {
+    border-radius: 5px; /* round the corners of the scrollbar thumb */
+  }
+  
+  .timeline-content::-webkit-scrollbar-thumb:horizontal {
+    border-radius: 5px; /* round the corners of the scrollbar thumb */
+  }
+  
+  .timeline-content:hover::-webkit-scrollbar-thumb {
+    background: #555; /* set the color of the scrollbar thumb when hovered */
+  }
+  
+  .timeline-content:active::-webkit-scrollbar-thumb {
+    background: #555; /* set the color of the scrollbar thumb when clicked */
+  }
+  
+  .timeline-content:active::-webkit-scrollbar {
+    width: 12px; /* increase the width of the scrollbar when clicked */
+  }
+  
+  .timeline-content::-webkit-scrollbar-corner {
+    background: transparent; /* hide the scrollbar corner */
+  }
