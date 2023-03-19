@@ -1,14 +1,16 @@
-.Chatbook-container {
+.dm-page-container {
   height: calc(100vh - 120px);
-  width: 100%
+  width: 100%;
+  flex-grow: 1;
+  margin-bottom: 30px;
 }
 
-.Chatbook-userList {
+.userList {
   flex: 0 0 220px;
   margin-right: var(--l);
 }
 
-.Chatbook-chatContainer {
+.chatContainer {
   flex-grow: 1;
   overflow-x: hidden;
 }

@@ -82,12 +82,12 @@ const DirectMessages = (props) => {
   };
 
   if (!props.userId) {
-    return <div>请登录</div>;
+    return <div className="dm-page-container">请登录</div>;
   }
   return (
     <>
-      <div className="u-flex u-relative Chatbook-container">
-        <div className="Chatbook-userList">
+      <div className="u-flex u-relative dm-page-container">
+        <div className="userList">
           <ChatList
             setActiveUser={setActiveUser}
             userId={props.userId}
@@ -95,7 +95,7 @@ const DirectMessages = (props) => {
             active={activeChat.recipient}
           />
         </div>
-        <div className="Chatbook-chatContainer u-relative">
+        <div className="chatContainer u-relative">
           <Chat data={activeChat}/>
         </div>
       </div>

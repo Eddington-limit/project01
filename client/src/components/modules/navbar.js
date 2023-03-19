@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css"
  
 const Navbar = () => {
-    return <div className="container">
+    return <div className="navbar-sub-container">
         <Link to="/" className="button">首页</Link>
         <Link to="/message" className="button">消息</Link>
     </div>
