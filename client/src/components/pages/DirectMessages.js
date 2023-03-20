@@ -18,6 +18,8 @@ const DirectMessages = (props) => {
    * @typedef UserObject
    * @property {string} _id
    * @property {string} name
+   * @property {String[]} description
+   * @property {String[]} chatted_with
    */
   /**
    * @typedef MessageObject
@@ -59,7 +61,7 @@ const DirectMessages = (props) => {
 
 
   useEffect(() => {if (props.userId) {
-    get("/api/activeUsers",{userId:props.userId}).then((data) => {
+    get("/api/activeUsers").then((data) => {
       // 如果用户已登录，就加载聊天列表聊天历史
       // 聊天历史默认为与最近一个聊天对象的聊天历史（还要设置选择聊天对象对chatlist的改变）
       setActiveUsers(data.chatted_with);})
@@ -77,6 +79,8 @@ const DirectMessages = (props) => {
 
 
 
+
+
   const setActiveUser = (user) => {
     loadMessageHistory(user)
   };
@@ -85,7 +89,6 @@ const DirectMessages = (props) => {
     return <div className="dm-page-container">请登录</div>;
   }
   return (
-    <>
       <div className="u-flex u-relative dm-page-container">
         <div className="userList">
           <ChatList
@@ -99,7 +102,6 @@ const DirectMessages = (props) => {
           <Chat data={activeChat}/>
         </div>
       </div>
-    </>
   );
 }
 

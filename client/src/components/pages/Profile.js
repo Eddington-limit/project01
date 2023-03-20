@@ -16,8 +16,12 @@ const Profile = (props) => {//how to get prop in the path of router?
         document.title='个人页面';
         get("/api/profile",{userId:userId}).then((profileObj)=>{setProfile(profileObj)})
     },[])
-    //link button to main page?
     //check session?
+    //cal whoami to check if logged in, then display chat button
+    //implement startChat to chat (create a new api?)
+const startChat = (recipient) => {
+    
+}
     return (
         <>
           <div
@@ -36,6 +40,7 @@ const Profile = (props) => {//how to get prop in the path of router?
               <div id="profile-description">
                 {profile.description}
               </div>
+              {<></>}
               <Link to="/" onClick={props.handleLogout}>登出</Link>
             </div>
           </div>
