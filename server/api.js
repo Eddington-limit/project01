@@ -37,7 +37,7 @@ router.get("/whoami", (req, res) => {
 });
 
 router.post("/initsocket", (req, res) => {
-  // do nothing if user not logged in
+  // do nothing if user not logged in(sonething is wrong, check server-socket.js)
   if (req.user)
     socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
@@ -108,33 +108,16 @@ router.get("/activeUsers", (req, res) => {
 });
 
 router.post("/startChat", (req,res) => {
-  User.findByIdAndUpdate(
-    req.session.user._id,
-    { email: 'new-email@example.com' },
-    { new: true }
-  );
-
-  // update the user object in the session
-  req.session.user = user;
+  const chatted_with = req.session.user.chatted_with.slice()
   const index = chatted_with.indexOf(req.body._id);
   index !== -1?
     chatted_with.splice(index, 1):
     chatted_with.unshift(req.body._id);
+  //更新session
   req.session.user.chatted_with=chatted_with;
-  User.find({_id:req.user._id}).then((user).)
-  //how to save and update session?
-
-  User.find({_id:{$in: req.user.chatted_with}}).then((users)=>{
-    
-  })
-  req.user.chatted_with.include(req.body._id)?
-  {const index = array.indexOf(value);
-    if (index !== -1) {
-      array.splice(index, 1);
-    }
-    array.unshift(value);
-  }
-})
+  //更新数据库
+  User.findByIdAndUpdate(
+    req.session.user._id,{chatted_with: chatted_with}).then(()=>{res.send('success')})})
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

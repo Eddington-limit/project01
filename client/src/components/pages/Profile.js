@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 import { useParams } from "react-router-dom";
 import {Link, useNavigate} from 'react-router-dom'
 
@@ -7,21 +7,29 @@ import Default from '../../public/Default.png'
 
 import "../../utilities.css"
 import "./Profile.css"
-//{user_name:String,description:String,profile_pic:image(?)}
 
-const Profile = (props) => {//how to get prop in the path of router?
+
+const Profile = (props) => {
     const [viewinguserId,setViewingUuserId] = useState(useParams().viewing_userId)
     const [profile,setProfile] = useState({})
     useEffect(() => {
         document.title='个人页面';
-        get("/api/profile",{userId:userId}).then((profileObj)=>{setProfile(profileObj)})
+        get("/api/profile",{userId:viewinguserId}).then((profileObj)=>{setProfile(profileObj)})
     },[])
-    //check session?
-    //cal whoami to check if logged in, then display chat button
-    //implement startChat to chat (create a new api?)
-const startChat = () => {
-    
-}
+
+    const navigate = useNavigate();
+
+    //startChat将正在被显示的用户添加到聊天列表第一
+    const startChat = () => {
+        return post("/api/startChat", {_id:props.viewing_userId}).then(()=>{
+          console.log('successfully update chatted_with')
+        })
+    }
+
+    const handleChat = () => {
+      startChat().then(()=>{navigate("/message")})
+    }
+
     return (
         <>
           <div
@@ -40,8 +48,8 @@ const startChat = () => {
               <div id="profile-description">
                 {profile.description}
               </div>
-              {userId?
-              <Link to="/message" onClick={}></Link>:
+              {props.userId?
+              <button onClick={handleChat}>私信</button>:
               null}
               <Link to="/" onClick={props.handleLogout}>登出</Link>
             </div>
