@@ -19,7 +19,7 @@ const DirectMessages = (props) => {
    * @property {string} _id
    * @property {string} name
    * @property {String[]} description
-   * @property {String[]} chatted_with
+   * @property {UserObject[]} chatted_with
    */
   /**
    * @typedef MessageObject
@@ -64,7 +64,7 @@ const DirectMessages = (props) => {
     get("/api/activeUsers").then((data) => {
       // 如果用户已登录，就加载聊天列表聊天历史
       // 聊天历史默认为与最近一个聊天对象的聊天历史（还要设置选择聊天对象对chatlist的改变）
-      setActiveUsers(data.chatted_with);})
+      setActiveUsers(data);})
       .then(()=>{if (activeUsers.length>=1) {loadMessageHistory(activeUsers[0])}})}
     })
     

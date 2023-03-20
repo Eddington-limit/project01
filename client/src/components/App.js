@@ -82,7 +82,7 @@ const App = () => {
             }
           />
           <Route path="*" element={<NotFound/>} />
-          <Route path="/profile/:userId" element={<Profile handleLogout={handleLogout}/>} />
+          <Route path="/profile/:viewing_userId" element={<Profile userId={userId} handleLogout={handleLogout}/>} />
           <Route path="/message" element={<DirectMessages userId={userId}/>} />
         </Routes>
         <div className="u-bottom u-center">此网站仅供个人学习用，请勿发布敏感或隐私信息</div>

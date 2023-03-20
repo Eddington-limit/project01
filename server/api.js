@@ -100,12 +100,41 @@ router.post("/story", auth.ensureLoggedIn, (req, res) => {
 
 router.get("/profile",(req,res) => {
   User.find()
-  res.send({user_name:'test user', description:'I am a robot'})//need database
+  res.send({user_name:'test user', description:'I am a robot'})//need database!
 });
 
 router.get("/activeUsers", (req, res) => {
-  User.find({_id: req.user._id}).then((user)=>{res.send({chatted_with: user.chatted_with})})
+  User.find({_id:{$in: req.user.chatted_with}}).then((users)=>{res.send(users)})
 });
+
+router.post("/startChat", (req,res) => {
+  User.findByIdAndUpdate(
+    req.session.user._id,
+    { email: 'new-email@example.com' },
+    { new: true }
+  );
+
+  // update the user object in the session
+  req.session.user = user;
+  const index = chatted_with.indexOf(req.body._id);
+  index !== -1?
+    chatted_with.splice(index, 1):
+    chatted_with.unshift(req.body._id);
+  req.session.user.chatted_with=chatted_with;
+  User.find({_id:req.user._id}).then((user).)
+  //how to save and update session?
+
+  User.find({_id:{$in: req.user.chatted_with}}).then((users)=>{
+    
+  })
+  req.user.chatted_with.include(req.body._id)?
+  {const index = array.indexOf(value);
+    if (index !== -1) {
+      array.splice(index, 1);
+    }
+    array.unshift(value);
+  }
+})
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
