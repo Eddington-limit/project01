@@ -11,10 +11,10 @@ import "./Profile.css"
 
 const Profile = (props) => {
     const [viewinguserId,setViewingUuserId] = useState(useParams().viewing_userId)
-    const [profile,setProfile] = useState({})
+    const [viewinguser,setViewingUser] = useState({})
     useEffect(() => {
         document.title='个人页面';
-        get("/api/profile",{userId:viewinguserId}).then((profileObj)=>{setProfile(profileObj)})
+        get("/api/profile",{userId:viewinguserId}).then((userObj)=>{setViewingUser(userObj)})
     },[])
 
     const navigate = useNavigate();
@@ -42,9 +42,9 @@ const Profile = (props) => {
           <hr className="Profile-linejj" />
           <div className="u-flex">
             <div className="Profile-subContainer u-textCenter">
-              <h4 className="Profile-subTitle">{profile.user_name}</h4>
+              <h4 className="Profile-subTitle">{viewinguser.user_name}</h4>
               <div id="profile-description">
-                {profile.description}
+                {viewinguser.description}
               </div>
               {props.userId?
               <button onClick={handleChat}>私信</button>:

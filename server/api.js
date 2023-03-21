@@ -46,13 +46,22 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
-router.post("/story",(req,res) => {
-    const newStory = new Story({
-      creator_id: req.user._id,
-      creator_name: req.user.name,
-      content: req.body.content,
-    });
-    newStory.save().then((story) => res.send(story));
+router.post("/story",auth.ensureLoggedIn, (req, res) => {
+  if (req.body.content.length > 200) {
+    res.status(400).send('exceeded 200 words' );
+  } else {
+  const newStory = new Story({
+    creator_id: req.user._id,
+    creator_name: req.user.name,
+    content: req.body.content,
+  });
+  newStory.save().then((story) => res.send(story));
+  }});
+
+router.get("/user",(req,res)=>{
+  User.find({_id:req.query.userId}).then((user)=>{
+    res.send(user)
+  })
 })
 
 router.get("/chat", (req, res) => {
@@ -88,15 +97,6 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
 router.get("/stories",(req,res) => {
   Story.find().then((stories)=>res.send(stories))
 })
-
-router.post("/story", auth.ensureLoggedIn, (req, res) => {
-  const newStory = new Story({
-    creator_id: req.user._id,
-    creator_name: req.user.name,
-    content: req.body.content,
-  });
-  newStory.save().then((story) => res.send(story));
-});
 
 router.get("/profile",(req,res) => {
   User.find()

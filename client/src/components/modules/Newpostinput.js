@@ -78,9 +78,8 @@ const NewStory = (props) => {
     post("/api/story", body).then((story) => {
       // display this story on the screen
       props.addNewStory(story);
-    });
+    }).catch((err)=>{alert(err)});
   };
-
   return <NewPostInput defaultText="发布一条动态" onSubmit={addStory} />;
 };
 
