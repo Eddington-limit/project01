@@ -21,10 +21,8 @@ const Profile = (props) => {
 
     //startChat将正在被显示的用户添加到聊天列表第一
     const startChat = () => {
-        return post("/api/startChat", {_id:props.viewing_userId}).then(()=>{
-          console.log('successfully update chatted_with')
-        })
-    }
+        return post("/api/startChat", {_id:props.viewing_userId})
+        }
 
     const handleChat = () => {
       startChat().then(()=>{navigate("/message")})

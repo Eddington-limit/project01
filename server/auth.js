@@ -9,8 +9,9 @@ function verify(login_info) {
   return User.findOne({name: login_info.username}).then((existingUser) => {
     if (existingUser&&
       bcrypt.compareSync(login_info.password,existingUser.hashed_password)) 
-    {return existingUser}})
-}
+    {return existingUser}
+    else {
+      throw new Error('Invalid username or password')}})}
 
 
 async function register(req,res) {
@@ -40,7 +41,7 @@ async function register(req,res) {
 function login(req, res) {
   verify(req.body)//body is an object containing username and password
     .then((user) => {
-      if (!user) {console.log('用户名或密码不正确！')}
+      if (!user) {res.send({})};
       // persist user in the session
       req.session.user = user;
       res.send(user);
@@ -52,6 +53,11 @@ function login(req, res) {
 }
 
 function logout(req, res) {
+  const userSocket = socketManager.getSocketFromUserID(req.user._id);
+  if (userSocket) {
+    // delete user's socket if they logged out
+    socketManager.removeUser(req.user, userSocket);
+  }
   req.session.user = null;
   res.send({});
 }

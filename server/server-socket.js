@@ -3,15 +3,16 @@ let io;
 const userToSocketMap = {}; // maps user ID to socket object
 const socketToUserMap = {}; // maps socket ID to user object
 
+const getAllConnectedUsers = () => Object.values(socketToUserMap);
 const getSocketFromUserID = (userid) => userToSocketMap[userid];
 const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
-const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
+const getSocketFromSocketID = (socketid) => io.sockets.sockets.get(socketid);
 
 const addUser = (user, socket) => {
   const oldSocket = userToSocketMap[user._id];
   if (oldSocket && oldSocket.id !== socket.id) {
     // there was an old tab open for this user, force it to disconnect
-    // FIXME: is this the behavior you want?
+    // FIXME: is this the behavior you want?(something is wrong)
     oldSocket.disconnect();
     delete socketToUserMap[oldSocket.id];
   }
@@ -44,5 +45,6 @@ module.exports = {
   getSocketFromUserID: getSocketFromUserID,
   getUserFromSocketID: getUserFromSocketID,
   getSocketFromSocketID: getSocketFromSocketID,
+  getAllConnectedUsers: getAllConnectedUsers,
   getIo: () => io,
 };

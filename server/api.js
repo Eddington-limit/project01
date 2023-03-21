@@ -117,7 +117,7 @@ router.post("/startChat", (req,res) => {
   req.session.user.chatted_with=chatted_with;
   //更新数据库
   User.findByIdAndUpdate(
-    req.session.user._id,{chatted_with: chatted_with}).then(()=>{res.send('success')})})
+    req.session.user._id,{chatted_with: chatted_with}).then(()=>{res.send({})})})
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

@@ -22,7 +22,16 @@ import { get, post } from "../utilities";
  * Define the "App" component
  */
 const App = () => {
-  const [userId, setUserId] = useState(undefined);
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    get("/api/whoami").then((user) => {
+      if (user._id) {
+        // they are registed in the database, and currently logged in.
+        setUserId(user._id);
+      }
+    });
+  }, []);
 
   //用于登录的信息
   const [username, setUsername] = useState('username');
@@ -43,18 +52,18 @@ const App = () => {
     });
   }
 
+
   const handleRegister = () => {
     post("api/register",{username:username,password:password})
-    .then(()=>{alert('success!')})
+    .then(()=>{alert('注册成功!')})
     .catch(() => {
       alert('注册失败')})
   }
 
 
   const handleLogout = () => {
-    setUserId(undefined);
-    post("/api/logout");
-  };
+    setUserId(null);
+    post("/api/logout").then(()=>{console.log('已登出')})}
 
 
   return (
