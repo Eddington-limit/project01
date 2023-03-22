@@ -12,9 +12,9 @@ import "./Profile.css"
 const Profile = (props) => {
     const [viewinguserId,setViewingUuserId] = useState(useParams().viewing_userId)
     const [viewinguser,setViewingUser] = useState({})
+
     useEffect(() => {
         document.title='个人页面';
-        console.log(`viewing ${viewinguserId}`)
         get("/api/profile",{userId:viewinguserId}).then((userObj)=>{setViewingUser(userObj)})
     },[])
 
@@ -48,9 +48,11 @@ const Profile = (props) => {
                 {viewinguser.description}
               </div>
               {props.userId?
-              <button onClick={handleChat}>私信</button>:
-              null}
-              <Link to="/" onClick={props.handleLogout}>登出</Link>
+                <button onClick={handleChat}>私信</button>:
+                null}
+              {props.userId==viewinguserId?
+                <Link to="/" onClick={props.handleLogout}>登出</Link>:
+                null}
             </div>
           </div>
         </>

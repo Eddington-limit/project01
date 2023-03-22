@@ -87,8 +87,8 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
     content: req.body.content,
   });
   message.save();
-  socketManager.getSocketFromUserID(req.user._id).emit("message", message);//try logging socket
-    if (req.user._id !== req.body.recipient._id) {
+  socketManager.getSocketFromUserID(req.user._id).emit("message", message);
+    if (req.user._id !== req.body.recipient._id &&socketManager.getSocketFromUserID(req.body.recipient._id)) {
       socketManager.getSocketFromUserID(req.body.recipient._id).emit("message", message);
     }
   }
@@ -99,8 +99,8 @@ router.get("/stories",(req,res) => {
 })
 
 router.get("/profile",(req,res) => {
-  User.find()
-  res.send({user_name:'test user', description:'I am a robot'})//need database!
+  User.findOne({_id:req.query.userId}).then((user)=>{
+  res.send({user_name:user.name, description:user.description})})
 });
 
 router.get("/activeUsers", (req, res) => {
