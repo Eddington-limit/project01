@@ -14,6 +14,7 @@ const Profile = (props) => {
     const [viewinguser,setViewingUser] = useState({})
     useEffect(() => {
         document.title='个人页面';
+        console.log(`viewing ${viewinguserId}`)
         get("/api/profile",{userId:viewinguserId}).then((userObj)=>{setViewingUser(userObj)})
     },[])
 
@@ -21,7 +22,7 @@ const Profile = (props) => {
 
     //startChat将正在被显示的用户添加到聊天列表第一
     const startChat = () => {
-        return post("/api/startChat", {_id:props.viewing_userId})
+        return post("/api/startChat", {_id:viewinguserId})
         }
 
     const handleChat = () => {
