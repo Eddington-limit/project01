@@ -30,7 +30,7 @@ const Profile = (props) => {
     }
 
     return (
-        <>
+        <div className="Profile-container">
           <div
             className="Profile-avatarContainer"
             onClick={() => {
@@ -55,7 +55,7 @@ const Profile = (props) => {
                 null}
             </div>
           </div>
-        </>
+        </div>
       );
 }
 

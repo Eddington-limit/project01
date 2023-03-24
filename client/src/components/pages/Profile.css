@@ -1,3 +1,9 @@
+.Profile-container {
+  flex-grow:1
+}
+
+
+
 .Profile-avatarContainer {
     padding: 0 35%;
   }

@@ -15,7 +15,7 @@ import "./SingleUser.css";
 const ChatList = (props) => {
   return (
     <>
-      <h3>Open Chats</h3>
+      <h3>聊天</h3>
       {props.users
         .map((user, i) => (
           <SingleUser

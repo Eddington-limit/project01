@@ -4,7 +4,7 @@
 
 .story {
   position: relative;
-  width: 200px;
+  width: 300px;
   padding: 16px;
   background-color: #fff;
   border-radius: 10px;
@@ -15,7 +15,7 @@
 
 .storyContent {
   font-size: 40px;
-  margin: 8px 0 0;
+  margin: 8px;
 }
 
 .comment-and-like {

@@ -80,13 +80,13 @@ form {
 }
 
 .u-link {
-  color: var(--primary);
+  color: #000000;
   text-decoration: none;
   cursor: pointer;
 }
 
 .u-link:hover {
-  color: var(--primary--dim);
+  color: grey;
 }
 
 .u-bottom {
