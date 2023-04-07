@@ -6,8 +6,6 @@ const StorySchema = new mongoose.Schema({
   creator_name: String,
   content: String,
   liked_by: {type: [String], default: []},
-  num_of_likes:{ type: Number, default: 0},
-  num_of_comments:{ type: Number, default: 0}
 });
 
 // compile model from schema

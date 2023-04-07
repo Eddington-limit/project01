@@ -8,55 +8,101 @@
     padding: 0 35%;
   }
   
-  .Profile-avatar {
-    /* make it responsive */
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-    display: block;
-    /* div height to be the same as width*/
-    padding-top: 100%;
-  
-    /* make it a circle */
-    border-radius: 50%;
-  
-    /* Centering on image`s center*/
-    background-position-y: center;
-    background-position-x: center;
-    background-repeat: no-repeat;
-  
-    /* it makes the clue thing, takes smaller dimension to fill div */
-    background-size: cover;
-  
-    /* it is optional, for making this div centered in parent*/
-    margin: 0 auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-  
-  .Profile-name {
-    font-size: 40px;
-    font-weight: 300;
-  }
-  
-  .Profile-line {
-    border-color: var(--grey);
-  }
-  
-  .Profile-subContainer {
-    flex-grow: 1;
-    flex-basis: 0;
-  }
-  
-  .Profile-subContainer + .Profile-subContainer {
-    margin-left: var(--m);
-  }
-  
-  .Profile-subTitle {
-    font-weight: 300;
-    font-size: 24px;
-    margin: var(--m) var(--s);
-  }
-  
+.Profile-avatar {
+  /* make it responsive */
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  /* div height to be the same as width*/
+  padding-top: 100%;
+
+  /* make it a circle */
+  border-radius: 50%;
+
+  /* Centering on image`s center*/
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+
+  /* it makes the clue thing, takes smaller dimension to fill div */
+  background-size: cover;
+
+  /* it is optional, for making this div centered in parent*/
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.Profile-name {
+  font-size: 40px;
+  font-weight: 300;
+}
+
+.Profile-line {
+  border-color: var(--grey);
+}
+
+.Profile-subContainer {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.Profile-subContainer + .Profile-subContainer {
+  margin-left: var(--m);
+}
+
+.Profile-subTitle {
+  font-weight: 300;
+  font-size: 24px;
+  margin: var(--m) var(--s);
+}
+
+.Profile-buttons {
+  display:flex;
+  flex-direction: column;
+  gap:16px
+}
+
+.DM-button {
+  text-align: center;
+  margin:auto;
+  background-color: #14213d;
+  border-radius: 3vh;
+  width: 6vw;
+  opacity: 2;
+  text-decoration: none;
+  color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.Logout-button {
+  text-align: center;
+  margin:auto;
+  background-color: red;
+  border-radius: 3vh;
+  width: 6vw;
+  opacity: 2;
+  text-decoration: none;
+  color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.DM-button:hover,.Logout-button:hover{
+  opacity: 0.5 /* or any other value you like */
+}
+
+.DM-button:visited, .Logout-button:visited {
+  text-decoration: none;
+}
+

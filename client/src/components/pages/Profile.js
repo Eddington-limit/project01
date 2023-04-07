@@ -41,19 +41,19 @@ const Profile = (props) => {
           </div>
           <h1 className="Profile-name u-textCenter"></h1>
           <hr className="Profile-linejj" />
-          <div className="u-flex">
+          <div className="Profile-buttons">
             <div className="Profile-subContainer u-textCenter">
               <h4 className="Profile-subTitle">{viewinguser.user_name}</h4>
               <div id="profile-description">
                 {viewinguser.description}
               </div>
-              {props.userId?
-                <button onClick={handleChat}>私信</button>:
+            </div>
+            {props.userId?
+                <button onClick={handleChat} className="DM-button">私信</button>:
                 null}
               {props.userId==viewinguserId?
-                <Link to="/" onClick={props.handleLogout}>登出</Link>:
+                <Link to="/" onClick={props.handleLogout} className="Logout-button u-textCenter">登出</Link>:
                 null}
-            </div>
           </div>
         </div>
       );
