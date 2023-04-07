@@ -74,6 +74,12 @@ router.get("/chat", (req, res) => {
   Message.find(query).then((messages) => res.send(messages));
 });
 
+router.get("/comments", (req, res) => {
+  Comment.find({parent: req.query.parent}).then((commentObjs) => {
+    res.send(commentObjs)
+  })
+})
+
 router.post("/message", auth.ensureLoggedIn, (req, res) => {
   console.log(`Received a chat message from ${req.user.name}: ${req.body.content}`);
 

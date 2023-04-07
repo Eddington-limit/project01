@@ -8,15 +8,18 @@ import { get } from "../../utilities";
 const SingleStory = (props) => {
   const [comments, setComments] = useState([]);
 
-  
+  useEffect(()=>{
+    get('/api/comments',{parent:props._id}).then((commentObjs)=>{
+      setComments(commentObjs)
+    })
+  }
+  ,[])
 
   // this gets called when the user pushes "Submit", so their
   // post gets added to the screen right away
   const addNewComment = (commentObj) => {
     setComments(comments.concat([commentObj]));
   };
-
-
 
     return (
       <div className="story">
@@ -25,7 +28,7 @@ const SingleStory = (props) => {
         </Link>
         <p className="storyContent">{props.content}</p>
         <span className="comment-and-like">
-          <div className="item">评论:0</div>
+          <div className="item">评论:{comments.length}</div>
           <div className="item">点赞：{props.liked_by.includes(props.userId)?`liked ${props.num_of_likes}`:props.num_of_likes}</div>
         </span>
       </div>
