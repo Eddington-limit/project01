@@ -7,7 +7,7 @@ import { get } from "../../utilities";
 
 const SingleStory = (props) => {
   const [comments, setComments] = useState([]);
-  const [showComment, setShowComment] = useState([]);
+  const [showingComment, setShowingComment] = useState([false]);
 
   useEffect(()=>{
     get('/api/comments',{parent:props._id}).then((commentObjs)=>{
@@ -15,6 +15,10 @@ const SingleStory = (props) => {
     })
   }
   ,[])
+
+  const showComment = () => {
+    setShowingComment(true)
+  }
 
   // this gets called when the user pushes "Submit", so their
   // post gets added to the screen right away
@@ -29,7 +33,7 @@ const SingleStory = (props) => {
         </Link>
         <p className="storyContent">{props.content}</p>
         <span className="comment-and-like-button">
-          <button className="item">评论:{comments.length}</button>
+          <button className="item" onClick={showComment}>评论:{comments.length}</button>
           <div className="item">点赞：{props.liked_by.includes(props.userId)?`liked ${props.num_of_likes}`:props.num_of_likes}</div>
         </span>
         <></>
