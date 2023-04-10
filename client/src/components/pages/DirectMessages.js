@@ -32,6 +32,8 @@ const DirectMessages = (props) => {
    * @property {UserObject} recipient
    */
 
+  //dm not working
+
   const [activeUsers, setActiveUsers] = useState([]);
 
   const [activeChat, setActiveChat] = useState({

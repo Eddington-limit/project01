@@ -1,5 +1,5 @@
 .story:first-of-type {
-  margin-top: var(24px);
+  margin-top: 24px;
 }
 
 .story {
@@ -18,7 +18,7 @@
   margin: 8px;
 }
 
-.comment-and-like {
+.comment-and-like-button {
   display: flex;
   flex-direction: row;
 }
@@ -26,4 +26,5 @@
 .item {
   flex-grow: 1;
   text-align: center;
+
 }
