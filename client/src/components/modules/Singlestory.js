@@ -5,6 +5,7 @@ import './Singlestory.css'
 import '../../utilities.css'
 import { get } from "../../utilities";
 import SingleComment from "./SingleComment";
+import { NewComment } from "./Newpostinput";
 
 const SingleStory = (props) => {
   const [comments, setComments] = useState([]);
@@ -53,7 +54,12 @@ const SingleStory = (props) => {
           <button className="item" onClick={showComment}>评论:{comments.length}</button>
           <div className="item">点赞：{props.liked_by.includes(props.userId)?`liked ${props.num_of_likes}`:props.num_of_likes}</div>
         </span>
-        {showingComment?commentsList:null}
+        {showingComment?
+          <>
+            {commentsList}
+            <NewComment storyId={props._id} addNewComment={addNewComment}/>
+          </>
+          :null}
       </div>
     );
   };
