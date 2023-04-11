@@ -33,3 +33,7 @@
 .Container {
   margin:0 200px;
 }
+
+.Comment-input-margin:first-child {
+  margin:0
+}

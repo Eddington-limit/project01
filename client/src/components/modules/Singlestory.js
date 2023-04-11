@@ -5,7 +5,7 @@ import './Singlestory.css'
 import '../../utilities.css'
 import { get } from "../../utilities";
 import SingleComment from "./SingleComment";
-import { NewComment } from "./Newpostinput";
+import { NewComment } from "./NewPostInput";
 
 const SingleStory = (props) => {
   const [comments, setComments] = useState([]);

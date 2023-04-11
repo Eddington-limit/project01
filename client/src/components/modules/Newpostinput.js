@@ -63,7 +63,7 @@ const NewComment = (props) => {
     });
   };
 
-  return <NewPostInput defaultText="发表你的评论" onSubmit={addComment} />;
+  return <NewPostInput defaultText="发表你的评论" onSubmit={addComment} ClassName="Comment-input-margin"/>;
 };
 
 /**
