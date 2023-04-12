@@ -45,7 +45,9 @@ const Timeline =(props) => {
   }
   return (<div className="timeline">
     <div className="timeline-content">{storiesList}</div>
-    <NewStory addNewStory={addNewStory}/>
+    <form className="new-story-input">
+      <NewStory addNewStory={addNewStory}/>
+    </form>
     </div>)
   ;
 };

@@ -27,7 +27,7 @@ const NewPostInput = (props) => {
   };
 
   return (
-    <div className="u-flex Container">
+    <div className="u-flex">
       <input
         type="text"
         placeholder={props.defaultText}

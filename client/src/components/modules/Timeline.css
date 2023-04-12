@@ -51,3 +51,7 @@
   .timeline-content::-webkit-scrollbar-corner {
     background: transparent; /* hide the scrollbar corner */
   }
+
+  .new-story-input {
+    margin: 0 200px
+  }

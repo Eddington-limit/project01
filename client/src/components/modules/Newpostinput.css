@@ -29,11 +29,3 @@
   color: var(--white);
   background-color: #14213d;
 }
-
-.Container {
-  margin:0 200px;
-}
-
-.Comment-input-margin:first-child {
-  margin:0
-}
