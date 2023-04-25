@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, forwardRef } from "react";
 import { Link } from "react-router-dom";
 
 import './Singlestory.css'
@@ -7,7 +7,7 @@ import { get } from "../../utilities";
 import SingleComment from "./SingleComment";
 import { NewComment } from "./NewPostInput";
 
-const SingleStory = (props) => {
+const SingleStory = forwardRef((props, ref) => {
   const [comments, setComments] = useState([]);
   const [showingComment, setShowingComment] = useState(false);
 
@@ -45,7 +45,7 @@ const SingleStory = (props) => {
     commentsList = <div>没有内容</div>;}
 
     return (
-      <div className="story">
+      <div className="story" ref={ref}>
         <Link to={`/profile/${props.creator_id}`} className="u-link u-bold">
           {props.creator_name}
         </Link>
@@ -62,6 +62,6 @@ const SingleStory = (props) => {
           :null}
       </div>
     );
-  };
+  });
   
 export default SingleStory;
